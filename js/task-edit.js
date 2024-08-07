@@ -175,7 +175,7 @@ function openContactOverlay(containerID, selectedContactsID) {
 		hide(selectedContactsID);
 		hide("select-contacts_down");
 		show("select-contacts_up");
-
+		closeOutsideFrame(containerID, selectedContactsID);
 		isCantactOpen = false;
 	} else {
 		hide(containerID);
@@ -185,6 +185,21 @@ function openContactOverlay(containerID, selectedContactsID) {
 		isCantactOpen = true;
 	}
 }
+function closeOutsideFrame(containerID, selectedContactsID){
+	const overlayTask = document.getElementById('task_open_overlay_frame');
+	const FrameId = document.getElementById('select-contacts_down');
+	overlayTask.addEventListener('click', () => {
+		hide(containerID);
+			show(selectedContactsID);
+			show("select-contacts_down");
+			hide("select-contacts_up");
+			isCantactOpen = true;
+	})
+	FrameId.addEventListener('click', (e) => {
+		e.stopPropagation();
+	})
+}
+
 
 /**
  * Loads all users for contact assignment on the edit task interface.
