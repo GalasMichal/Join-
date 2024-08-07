@@ -185,19 +185,31 @@ function openContactOverlay(containerID, selectedContactsID) {
 		isCantactOpen = true;
 	}
 }
-function closeOutsideFrame(containerID, selectedContactsID){
+function closeOutsideFrame(containerID, selectedContactsID) {
+
 	const overlayTask = document.getElementById('task_open_overlay_frame');
 	const FrameId = document.getElementById('select-contacts_down');
-	overlayTask.addEventListener('click', () => {
-		hide(containerID);
+	const button = document.getElementById('ok_ed-task-btn');
+	const list = document.getElementById('et_contact_overlay');
+	if (isCantactOpen) {
+		overlayTask.addEventListener('click', () => {
+			hide(containerID);
 			show(selectedContactsID);
 			show("select-contacts_down");
 			hide("select-contacts_up");
 			isCantactOpen = true;
-	})
-	FrameId.addEventListener('click', (e) => {
-		e.stopPropagation();
-	})
+		})
+		FrameId.addEventListener('click', (e) => {
+			e.stopPropagation();
+		})
+		button.addEventListener('click', (d) => {
+			d.stopPropagation();
+		})
+		list.addEventListener('click', (s) => {
+			s.stopPropagation();
+		})
+	}
+
 }
 
 
