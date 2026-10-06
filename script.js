@@ -27,6 +27,7 @@ async function includeHTML() {
  * Initializes summary page by loading users, setting current user, greeting user, loading added tasks, loading user badge, and rendering summary data.
  */
 async function summaryInit() {
+  await includeHTML();
   await loadUsers();
   loadCurrentUser();
   greetUser();
@@ -39,7 +40,7 @@ async function summaryInit() {
  * Initializes the page by loading users and rendering the login window.
  */
 async function init() {
-  loadUsers();
+  await loadUsers();
   renderLogIn();
 }
 
@@ -233,6 +234,7 @@ function logIn() {
 function indexOfUser(email) {
   let userIndex = users.findIndex(user => user.email === email);
   localStorage.setItem('currentUserIndex', userIndex);
+  localStorage.setItem('currentUserEmail', email);
 }
 
 /**
@@ -263,6 +265,15 @@ function logInSuccedMsg() {
  * Loads the current user index from local storage.
  */
 function loadCurrentUser() {
+  const email = localStorage.getItem('currentUserEmail');
+  if (email && Array.isArray(users) && users.length) {
+    const idx = users.findIndex((u) => u.email === email);
+    if (idx >= 0) {
+      currentUser = idx;
+      localStorage.setItem('currentUserIndex', idx);
+      return;
+    }
+  }
   currentUser = localStorage.getItem('currentUserIndex');
 }
 
@@ -284,10 +295,9 @@ function greetUser() {
  * Registers a guest user and redirects to the summary page.
  */
 function logInGuest() {
+  localStorage.setItem('currentUserIndex', -1);
+  localStorage.removeItem('currentUserEmail');
   window.location.href = 'summary.html';
-  userIndex = -1;
-  localStorage.setItem('currentUserIndex', userIndex);
-  document.getElementById('user_name') = 'Guest User';
 }
 
 /**

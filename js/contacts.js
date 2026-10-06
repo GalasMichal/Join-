@@ -76,11 +76,12 @@ let contactCircleColors = [
  * this function initailizes the contacts and loads user data
  */
 async function initContacts() {
+    await includeHTML();
     await loadUsers();
     await loadAddedTasksFromStorage();
+    sortContactsAlphabetically(users);
     loadCurrentUser();
     loadUserBadge();
-    sortContactsAlphabetically(users);
     renderDifferentContacts();
 }
 

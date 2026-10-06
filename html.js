@@ -38,6 +38,7 @@ function renderHtmlLogIn() {
       <button type="button" class="btn-log-in btn-log-mobile" onclick="logIn()">Log in</button>
       <button type="button" class="btn-log-in-guest btn-log-mobile" onclick="logInGuest()">Guest Log in</button>
     </div>
+    <p class="demo-login-hint">Demo: demo@join.de / join</p>
 </form>
 </div>
     `

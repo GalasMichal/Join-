@@ -5,6 +5,7 @@ let newAssigned = [];
  * this function initializes task addition process by loading necessary data and setting up the interface
  */
 async function initAddTask() {
+  await includeHTML();
   await loadUsers();
   await loadAddedTasks();
   loadCurrentUser();

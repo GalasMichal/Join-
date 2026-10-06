@@ -91,8 +91,11 @@ function activeInfoLink() {
  */
 function loadUserBadge() {
     let userBadgeContainer = document.getElementById("user_initials");
+    if (!userBadgeContainer) {
+        return;
+    }
     i = currentUser;
-    if (i >= 0) {
+    if (i >= 0 && users[i]) {
         let userName = users[i]["name"];
         let userInitials = generateUserBadge(userName);
         userBadgeContainer.innerHTML = userInitials;

@@ -13,7 +13,7 @@
  *
  */
 function loadTaskEdit(TaskID) {
-	let tasks = addedTasks.filter((t) => t["id"] === TaskID);
+	let tasks = addedTasks.filter((t) => Number(t["id"]) === Number(TaskID));
 	document.getElementById("task_overlay_bg").innerHTML = "";
 
 	for (let index = 0; index < tasks.length; index++) {

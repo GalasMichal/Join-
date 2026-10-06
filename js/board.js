@@ -13,6 +13,7 @@ let filteredTasks = [];
  * @returns {Promise<void>} - A promise that resolves when the board is initialized.
  */
 async function initBoard() {
+    await includeHTML();
     await loadAddedTasksFromStorage();
     await loadUsers();
     loadBoard();

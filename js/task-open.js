@@ -4,7 +4,7 @@
  * @param {int} taskID - transfers the task ID
  */
 function loadTaskOpen(taskID) {
-    let tasks = addedTasks.filter((t) => t["id"] === taskID);
+    let tasks = addedTasks.filter((t) => Number(t["id"]) === Number(taskID));
     document.getElementById("task_overlay_bg").innerHTML = "";
     for (let index = 0; index < tasks.length; index++) {
         let task = tasks[index];
@@ -28,7 +28,7 @@ function loadTaskOpen(taskID) {
  * @param {int} taskID - transfers the task ID
  */
 function renderOpenTask(taskID) {
-    let tasks = addedTasks.filter((t) => t["id"] === taskID);
+    let tasks = addedTasks.filter((t) => Number(t["id"]) === Number(taskID));
     document.getElementById("task_overlay_bg").innerHTML = "";
     for (let index = 0; index < tasks.length; index++) {
         let [taskID, bucket, title, description, prio, category, subtasks, assigneds, duedate] = getTaskVariables(
